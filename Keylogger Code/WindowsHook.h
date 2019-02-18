@@ -3,8 +3,8 @@ Jacob Brown jmb7438@rit.edu
 Geoffrey Kanteles gdk7676@rit.edu
 */
 
-#ifndef KEYBHOOK_H
-#define KEYBHOOK_H
+#ifndef WINDOWSHOOK_H
+#define WINDOWSHOOK_H
 
 #include <iostream>
 #include <fstream>
@@ -85,6 +85,6 @@ bool InstallHook()
     return eHook == NULL;
 }
 
-#endif // KEYBHOOK_H
+#endif // WINDOWSHOOK_H
 
 

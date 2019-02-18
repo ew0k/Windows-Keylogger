@@ -3,8 +3,8 @@ Jacob Brown jmb7438@rit.edu
 Geoffrey Kanteles gdk7676@rit.edu
 */
 
-#ifndef HELPER_H
-#define HELPER_H
+#ifndef EXTRAFUNCTS_H
+#define EXTRAFUNCTS_H
 
 #include <ctime>
 #include <string>
@@ -56,6 +56,7 @@ namespace Helper
 
         /**
             Gets the time and returns it as a string
+            @param sep separator used for the returned string
             @return a string including the time
         */
         std::string GetTimeString(const std::string &sep = ":") const
@@ -67,6 +68,7 @@ namespace Helper
 
         /**
             Gets the date and time and returns it as a string
+            @param sep separator used for the returned string
             @return a string including the date
         */
         std::string GetDateTimeString(const std::string &sep = ":") const
@@ -77,6 +79,11 @@ namespace Helper
 
     template <class T>
 
+    /**
+        return a string given any input
+        @param e input to convert
+        @return string of the given input
+    */
     std::string ToString(const T &e)
     {
         std::ostringstream s;
@@ -84,6 +91,11 @@ namespace Helper
         return s.str();
     }
 
+    /**
+        Write to a log
+        @param s stream to write
+        @return void
+    */
     void WriteAppLog(const std::string &s)
     {
         std::ofstream file("AppLog.txt", std::ios::app);
@@ -92,5 +104,5 @@ namespace Helper
     }
 }
 
-#endif // HELPER_H
+#endif // EXTRAFUNCTS_H
 

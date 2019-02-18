@@ -3,8 +3,8 @@ Jacob Brown jmb7438@rit.edu
 Geoffrey Kanteles gdk7676@rit.edu
 */
 
-#ifndef KEYCONSTANTS_H
-#define KEYCONSTANTS_H
+#ifndef CODEVALUES_H
+#define CODEVALUES_H
 
 #include <map>
 #include <string>
@@ -22,7 +22,7 @@ class Keys
 public:
     static std::map<int, KeyPair> KEYS;
 };
-
+//set of conversions from system language to human readable
 std::map<int, KeyPair> Keys::KEYS = {
     {0xC1, {"[VK_ABNT_C1]", "[Abnt C1]"}},
     {0xC2, {"[VK_ABNT_C2]", "[Abnt C2]"}},
@@ -218,5 +218,5 @@ std::map<int, KeyPair> Keys::KEYS = {
 };
 
 
-#endif // KEYCONSTANTS_H
+#endif // CODEVALUES_H
 

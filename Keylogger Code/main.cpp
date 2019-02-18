@@ -18,6 +18,8 @@ int main(){
     Logging::MKDir(Logging::GetOurPath(true));
 
     InstallHook();
+
+    //while loop used to hide the window on startup
     while(GetMessageA(&Msg, NULL, 0, 0)){
         TranslateMessage(&Msg);
         DispatchMessage(&Msg);
