@@ -1,3 +1,8 @@
+/*
+Jacob Brown jmb7438@rit.edu
+Geoffrey Kanteles gdk7676@rit.edu
+*/
+
 #ifndef KEYCONSTANTS_H
 #define KEYCONSTANTS_H
 

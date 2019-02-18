@@ -1,15 +1,20 @@
+/*
+Jacob Brown jmb7438@rit.edu
+Geoffrey Kanteles gdk7676@rit.edu
+*/
+
 #ifndef HELPER_H
 #define HELPER_H
 
-#include <ctime>    // for mail-sending triggers etc
+#include <ctime>
 #include <string>
-#include <sstream>  // to convert various types to strings in there
-#include <fstream>  // for ofstream
+#include <sstream>
+#include <fstream>
 
 namespace Helper
-{   // prototypes of functions
+{
     template <class T>
-    // to convert pretty much anything to string
+
     std::string ToString(const T &);
 
     struct DateTime
@@ -22,7 +27,7 @@ namespace Helper
             struct tm *info = localtime(&ms);
 
             D = info->tm_mday;
-            m = info->tm_mon + 1;   // because it starts from 0 e.g. January = 0
+            m = info->tm_mon + 1;
             y = 1900 + info->tm_year;
             M = info->tm_min;
             H = info->tm_hour;
@@ -30,7 +35,7 @@ namespace Helper
         }
         DateTime(int D, int m, int y, int M, int H, int S) : D(D), m(m), y(y), M(M), H(H), S(S) {}
         DateTime(int D, int m, int y) : D(D), m(m), y(y), M(0), H(0), S(0) {}
-        // const = it only reads and it's not changing anything within the class
+
         DateTime Now() const
         {
             return DateTime();
@@ -38,18 +43,32 @@ namespace Helper
 
         int D, m, y, M, H, S;
 
+        /**
+            Gets the date and returns it as a string
+            @return a string including the date
+        */
         std::string GetDateString() const
-        {   // return a string like DD.mm.YYYY
+        {
             return std::string(D < 10 ? "0" : "") + ToString(D) +
                     std::string(m < 10 ? ".0" : ".") + ToString(m) +
                     "." + ToString(y);
         }
+
+        /**
+            Gets the time and returns it as a string
+            @return a string including the time
+        */
         std::string GetTimeString(const std::string &sep = ":") const
-        {   // returns a string like HH:MM:SS
+        {
             return std::string(H < 10 ? "0" : "") + ToString(H) + sep +
                     std::string(M < 10 ? "0" : "") + ToString(M) + sep +
                     std::string(S < 10 ? sep : "") + ToString(S);
         }
+
+        /**
+            Gets the date and time and returns it as a string
+            @return a string including the date
+        */
         std::string GetDateTimeString(const std::string &sep = ":") const
         {
             return GetDateString() + " " + GetTimeString(sep);
