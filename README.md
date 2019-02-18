@@ -9,7 +9,7 @@ To install the keylogger on the target machine, download the files, then run the
 
 `mingw32-g++.exe  -o [path to KeyLog.exe] [path to main.o]  -mwindows`
 
-Key logs will be stored in C:\Users\[USERNAME]\AppData\Roaming\Microsoft\CLR
+Key logs will be stored in C:\Users\\[USERNAME]\AppData\Roaming\Microsoft\CLR
 
 ## Flask
 To install the Flask server, with Python 3 and Flask installed (pip3 install Flask), run app.py with the following command:
