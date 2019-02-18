@@ -1,6 +1,11 @@
 # Windows-Keylogger
 Keylogger for Windows in C++, reports back to Flask server (Python).
 
+# Authors
+Jake Brown - jmb7438@rit.edu
+
+Geoff Kanteles – gdk7676@rit.edu
+
 # Installation
 ## Keylogger
 To install the keylogger on the target machine, download the files, then run the following commands:
@@ -13,4 +18,4 @@ Key logs will be stored in C:\Users\\[USERNAME]\AppData\Roaming\Microsoft\CLR
 
 ## Flask
 To install the Flask server, with Python 3 and Flask installed (pip3 install Flask), run app.py with the following command:
-python3 app.py [ip address of server]
+python3 app.py [ip address of serve
